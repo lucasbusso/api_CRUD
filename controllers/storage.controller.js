@@ -14,6 +14,7 @@ const getItems = async (req, res) => {
     handleHttpError(res, "ERROR_GET_ITEMS");
   }
 };
+
 const getItem = async (req, res) => {
   try {
     const { id } = matchedData(req);
@@ -24,29 +25,37 @@ const getItem = async (req, res) => {
     handleHttpError(res, "ERROR_GET_ITEM");
   }
 };
+
 const createItem = async (req, res) => {
-  const { file } = req;
-  const fileData = {
-    filename: file.filename,
-    url: `${PUBLIC_URL}/${file.filename}`,
-  };
-  const data = await storageModel.create(fileData);
-  res.send({ data });
+  try {
+    const { file } = req;
+    const body = {
+      url: `${PUBLIC_URL}/${file.filename}`,
+      filename: file.filename,
+    };
+    const response = await storageModel.create(body);
+    res.send({ response });
+  } catch (e) {
+    handleHttpError(res, "ERROR_UPLOAD_ITEM");
+  }
 };
-const updateItem = async (req, res) => {};
+
 const deleteItem = async (req, res) => {
   try {
-    const { id } = matchedData(req);
-    console.log(id);
-    // const dataFile = await storageModel.findById(id);
-    // const { filename } = dataFile;
-    // const filePath = `${MEDIA_PATH}/${filename}`;
-    // fs.unlinkSync(filePath);
-    // const data = {
-    //   filePath,
-    //   deleted: 1,
-    // };
-    // res.send({ data });
+    req = matchedData(req);
+    console.log(req)
+    const id = req.id;
+    const findMedia = await storageModel.findById(id);
+    const fileName = findMedia.filename;
+    await storageModel.delete({ _id: id });
+    fs.unlinkSync(`${MEDIA_PATH}/${fileName}`);
+
+    const data = {
+      findMedia: fileName,
+      deleted: true,
+    };
+
+    res.send({ data });
   } catch (error) {
     console.log(error);
     handleHttpError(res, "ERROR_DELETE_ITEM");
@@ -57,6 +66,5 @@ module.exports = {
   getItems,
   getItem,
   createItem,
-  updateItem,
   deleteItem,
 };
