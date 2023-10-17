@@ -31,7 +31,6 @@ const login = async (req, res) => {
     const data = { token: await tokenSign(dataUser), user: dataUser };
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_LOGIN_USER");
   }
 };

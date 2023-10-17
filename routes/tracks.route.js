@@ -11,12 +11,19 @@ const {
   validatorGetItem,
 } = require("../utils/validators/track");
 const authMiddleware = require("../middlewares/session");
+const checkRole = require("../middlewares/userRole");
 
 const router = express.Router();
 
 router.get("/", authMiddleware, getItems);
 router.get("/:id", authMiddleware, validatorGetItem, getItem);
-router.post("/", authMiddleware, validatorCreateItem, createItem);
+router.post(
+  "/",
+  authMiddleware,
+  checkRole(["admin"]),
+  validatorCreateItem,
+  createItem
+);
 router.put(
   "/:id",
   authMiddleware,

@@ -13,7 +13,6 @@ const authMiddleware = async (req, res, next) => {
       return handleHttpError(res, "NO_ID", 401);
     }
     const user = await userModel.findById(payload._id);
-    console.log(user);
     req.user = user;
     next();
   } catch (error) {

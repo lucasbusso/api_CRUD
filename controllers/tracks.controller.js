@@ -8,7 +8,6 @@ const getItems = async (req, res) => {
     const length = data.length;
     res.send({ length, data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_GET_ITEMS");
   }
 };
@@ -37,7 +36,6 @@ const updateItem = async (req, res) => {
     const data = await tracksModel.findOneAndUpdate({ id }, body);
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_UPDATE_ITEM");
   }
 };
@@ -48,7 +46,6 @@ const deleteItem = async (req, res) => {
     const data = await tracksModel.delete({ _id: id });
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_DELETE_ITEM");
   }
 };
