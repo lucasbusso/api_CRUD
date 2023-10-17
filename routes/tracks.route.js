@@ -10,13 +10,20 @@ const {
   validatorCreateItem,
   validatorGetItem,
 } = require("../utils/validators/track");
+const authMiddleware = require("../middlewares/session");
 
 const router = express.Router();
 
-router.get("/", getItems);
-router.get("/:id", validatorGetItem, getItem);
-router.post("/", validatorCreateItem, createItem);
-router.put("/:id", validatorGetItem, validatorCreateItem, updateItem);
-router.delete("/:id", validatorGetItem, deleteItem);
+router.get("/", authMiddleware, getItems);
+router.get("/:id", authMiddleware, validatorGetItem, getItem);
+router.post("/", authMiddleware, validatorCreateItem, createItem);
+router.put(
+  "/:id",
+  authMiddleware,
+  validatorGetItem,
+  validatorCreateItem,
+  updateItem
+);
+router.delete("/:id", authMiddleware, validatorGetItem, deleteItem);
 
 module.exports = router;
