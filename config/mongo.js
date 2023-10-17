@@ -10,7 +10,7 @@ const dbConnect = () => {
     },
     (err, response) => {
       if (!err) {
-        console.log("*****Connection successful ****");
+        console.log("*****mongoose DB Connection successful****");
       } else {
         console.log("*****Connection error ****");
       }

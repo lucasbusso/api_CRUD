@@ -9,7 +9,7 @@ const {
 const {
   validatorCreateItem,
   validatorGetItem,
-} = require("../utils/validator/track");
+} = require("../utils/validators/track");
 
 const router = express.Router();
 
