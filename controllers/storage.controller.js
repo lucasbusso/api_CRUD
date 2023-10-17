@@ -22,7 +22,6 @@ const getItem = async (req, res) => {
     const data = await storageModel.findById(id);
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_GET_ITEM");
   }
 };
@@ -57,7 +56,6 @@ const deleteItem = async (req, res) => {
 
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_DELETE_ITEM");
   }
 };

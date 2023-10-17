@@ -1,7 +1,9 @@
+const API_KEY = process.env.API_KEY
+
 const customHeader = (req, res, next) => {
   try {
     const apiKey = req.headers.api_key;
-    if (apiKey === "lucarda") {
+    if (apiKey === API_KEY) {
       next();
     } else {
       res.status(403).send({ error: "API_KEY_ERROR" });
