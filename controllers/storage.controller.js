@@ -43,7 +43,6 @@ const createItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     req = matchedData(req);
-    console.log(req)
     const id = req.id;
     const findMedia = await storageModel.findById(id);
     const fileName = findMedia.filename;
