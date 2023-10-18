@@ -9,7 +9,7 @@ const {
 const {
   validatorCreateItem,
   validatorGetItem,
-} = require("../utils/validators/track");
+} = require("../validators/track");
 const authMiddleware = require("../middlewares/session");
 const checkRole = require("../middlewares/userRole");
 

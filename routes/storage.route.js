@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../utils/handleStorage");
-const validatorGetItem = require("../utils/validators/storage");
+const validatorGetItem = require("../validators/storage");
 const authMiddleware = require("../middlewares/session");
 
 const {
