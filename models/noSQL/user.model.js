@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
+const mongoosePaginateAggregate = require("mongoose-aggregate-paginate-v2");
 const mongooseDelete = require("mongoose-delete");
 
 const UserSchema = new mongoose.Schema(
@@ -27,6 +29,9 @@ const UserSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-UserSchema.plugin(mongooseDelete, { overrideMethods: "all" });
+UserSchema.index({ email: 1 });
+UserSchema.plugin(mongoosePaginate);
+UserSchema.plugin(mongoosePaginateAggregate);
+UserSchema.plugin(mongooseDelete, { overrideMethods: true, deletedAt: true });
 
 module.exports = mongoose.model("User", UserSchema);
