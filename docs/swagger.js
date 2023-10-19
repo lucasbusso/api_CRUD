@@ -1,22 +1,10 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 
-/**
- *     {
-      url: "https://staging.gigantic-server.com/v1",
-      description: "Staging server",
-    }
- */
-
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
-    title: "API Spotify",
-    description: "Esta documentación de api de genera automaticamente",
-    contact: {
-      name: "Curso AWS",
-      url: "https://link.codigoencasa.com/CURSO",
-      email: "leifer.contacto@gmail.com",
-    },
+    title: "Rest API - Lucas Busso",
+    description: "Esta documentación de api se genera automaticamente",
   },
   servers: [
     {
