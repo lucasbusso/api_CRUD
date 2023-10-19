@@ -28,12 +28,9 @@ const router = express.Router();
  *        - bearerAuth: []
  *      responses:
  *        '200':
- *          description: .
+ *          description: Returns length property and data array with objects stored in DB.
  *        '402':
- *          description: Not allow because you need more permissions
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
+ *          description: Not allow because you need more permissions.
  */
 router.get("/", authMiddleware, getItems);
 
@@ -48,9 +45,9 @@ router.get("/", authMiddleware, getItems);
  *      description: Get track detail
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
+ *          description: Returns track model data stored.
  *        '422':
- *          description: Error de validacion.
+ *          description: Descriptive error (could be due a validation or an invalid ID error).
  *      security:
  *        - bearerAuth: []
  *      parameters:
@@ -60,10 +57,6 @@ router.get("/", authMiddleware, getItems);
  *           required: true
  *           schema:
  *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
- *
  */
 router.get("/:id", authMiddleware, validatorGetItem, getItem);
 
@@ -78,21 +71,18 @@ router.get("/:id", authMiddleware, validatorGetItem, getItem);
  *      description: Add new track with detail
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
+ *          description: Returns track inserted in collection.
  *        '422':
- *          description: Error de validacion.
+ *          description: Descriptive error (could be due a validation or a body request error)
  *      security:
  *        - bearerAuth: []
  *      parameters:
  *        -  in: "body"
  *           name: "body"
- *           description: "parametros requeridos para insertar comentrario"
+ *           description: "Schema collection defined to store a new track"
  *           required: true
  *           schema:
  *              $ref: "#/definitions/track"
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
  */
 router.post(
   "/",
@@ -113,15 +103,15 @@ router.post(
  *      description: Update track with detail
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
+ *          description: Returns updated register.
  *        '422':
- *          description: Error de validacion.
+ *          description: Descriptive error (could be due a validation or a body request error)
  *      security:
  *        - bearerAuth: []
  *      parameters:
  *        -  in: "body"
  *           name: "body"
- *           description: "parametros requeridos para insertar comentrario"
+ *           description: "Model description"
  *           required: true
  *           schema:
  *              $ref: "#/definitions/track"
@@ -131,9 +121,6 @@ router.post(
  *           required: true
  *           schema:
  *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
  */
 router.put(
   "/:id",
@@ -154,9 +141,9 @@ router.put(
  *      description: Delete track detail
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
+ *          description: Returns findMedia file property and deleted boolean property.
  *        '422':
- *          description: Error de validacion.
+ *          description: Descriptive error (could be due a validation or a body request error).
  *      security:
  *        - bearerAuth: []
  *      parameters:
@@ -166,10 +153,6 @@ router.put(
  *           required: true
  *           schema:
  *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
- *
  */
 router.delete("/:id", authMiddleware, validatorGetItem, deleteItem);
 

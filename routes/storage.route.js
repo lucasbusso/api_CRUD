@@ -19,24 +19,17 @@ const {
  *      tags:
  *        - storage
  *      summary: "Get list storage"
- *      description: Obtener la lista de canciones
+ *      description: Get list storage
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
+ *          description: Returns length property and data array with objects stored in DB.
  *        '422':
- *          description: Error de validacion.
+ *          description: Session error (Authorization header).
  *      security:
  *        - bearerAuth: []
- *      parameters:
- *        -  in: "path"
- *           name: "id"
- *           description: "ID track"
- *           required: true
- *           schema:
- *              type: string
  *    responses:
  *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
+ *        description: Returns length property and data array with objects stored in DB
  *
  */
 router.get("/", authMiddleware, getItems);
@@ -48,31 +41,22 @@ router.get("/", authMiddleware, getItems);
  *    get:
  *      tags:
  *        - storage
- *      summary: "Detalle track"
- *      description: Detalle track with detail
+ *      summary: "Track details"
+ *      description: Track details
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
- *        '422':
- *          description: Error de validacion.
+ *          description: Returns an object with the properties url, filename, deleted, createdAt, updatedAt
+ *        '403':
+ *          description: Validation error or invalid ID.
  *      security:
  *        - bearerAuth: []
  *      parameters:
- *        -  in: "body"
- *           name: "body"
- *           description: "parametros requeridos para insertar comentrario"
- *           required: true
- *           schema:
- *              $ref: "#/definitions/track"
  *        -  in: "path"
  *           name: "id"
- *           description: "ID track"
+ *           description: "Track id"
  *           required: true
  *           schema:
  *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
  */
 router.get("/:id", authMiddleware, validatorGetItem, getItem);
 
@@ -83,18 +67,22 @@ router.get("/:id", authMiddleware, validatorGetItem, getItem);
  *    post:
  *      tags:
  *        - storage
- *      summary: "Post file .mp3"
+ *      summary: "Post single file"
  *      description: List all storage with details
  *      security:
  *        - bearerAuth: []
  *      responses:
  *        '200':
- *          description: .
+ *          description: Returns an object with the properties url, filename, deleted, createdAt, updatedAt
  *        '402':
  *          description: Not allow because you need more permissions
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
+ *      parameters:
+ *        -  in: "body"
+ *           name: "form-data"
+ *           description: "key: myfile - value: file.ext"
+ *           required: true
+ *           schema:
+ *              $ref: "#/definitions/upload"
  */
 router.post("/", authMiddleware, upload.single("myfile"), createItem);
 
@@ -105,11 +93,11 @@ router.post("/", authMiddleware, upload.single("myfile"), createItem);
  *    delete:
  *      tags:
  *        - storage
- *      summary: "Delete storage"
- *      description: Delete storage detail
+ *      summary: "Delete file"
+ *      description: Delete file
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
+ *          description: Returns findMedia file property and deleted boolean property.
  *        '422':
  *          description: Error de validacion.
  *      security:
@@ -117,13 +105,10 @@ router.post("/", authMiddleware, upload.single("myfile"), createItem);
  *      parameters:
  *        -  in: "path"
  *           name: "id"
- *           description: "ID track"
+ *           description: "Track id"
  *           required: true
  *           schema:
  *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
  *
  */
 router.delete("/:id", authMiddleware, validatorGetItem, deleteItem);
