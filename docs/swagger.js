@@ -65,6 +65,48 @@ const swaggerDefinition = {
         },
       },
     },
+    register: {
+      type: "object",
+      required: ["name", "password", "email", "age"],
+      properties: {
+        name: {
+          type: "string",
+        },
+        password: {
+          type: "string",
+        },
+        email: {
+          type: "string",
+        },
+        age: {
+          type: "number",
+        },
+      },
+    },
+    login: {
+      type: "object",
+      required: ["email", "password"],
+      properties: {
+        email: {
+          type: "string",
+        },
+        password: {
+          type: "string",
+        },
+      },
+    },
+    upload: {
+      type: "object",
+      required: ["key", "value"],
+      properties: {
+        key: {
+          type: "string",
+        },
+        value: {
+          type: "file",
+        },
+      },
+    },
   },
 };
 

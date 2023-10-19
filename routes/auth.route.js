@@ -11,22 +11,19 @@ const router = express.Router();
  *      tags:
  *        - auth
  *      summary: "Register user"
- *      description: Obtener la lista de canciones
+ *      description: User registration.
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
- *        '422':
- *          description: Error de validacion.
+ *          description: Returns the entity object and session token (Authorization header) in the body response.
+ *        '403':
+ *          description: Descriptive error response.
  *      parameters:
- *        -  in: "path"
- *           name: "id"
- *           description: "ID track"
+ *        -  in: "body"
+ *           name: "user object"
+ *           description: "user object"
  *           required: true
  *           schema:
- *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
+ *              $ref: "#/definitions/register"
  *
  */
 router.post("/register", validatorRegister, register);
@@ -42,19 +39,16 @@ router.post("/register", validatorRegister, register);
  *      description: Obtener la lista de canciones
  *      responses:
  *        '200':
- *          description: Retorna el objeto insertado en la coleccion.
- *        '422':
- *          description: Error de validacion.
+ *          description: Returns the entity object and session token (Authorization header) in the body response.
+ *        '401':
+ *          description: Descriptive error response.
  *      parameters:
- *        -  in: "path"
- *           name: "id"
- *           description: "ID track"
+ *        -  in: "body"
+ *           name: "login"
+ *           description: "email and password"
  *           required: true
  *           schema:
- *              type: string
- *    responses:
- *      '201':
- *        description: retorna el objeto insertado en la coleccion con stado '201'
+ *              $ref: "#/definitions/login"
  *
  */
 router.post("/login", validatorLogin, login);
