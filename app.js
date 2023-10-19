@@ -4,6 +4,8 @@ const cors = require("cors");
 const dbConnection = require("./config/mongo");
 const morganBody = require("morgan-body");
 const { loggerSlack } = require("./utils/handleLogger");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./docs/swagger");
 
 const PORT = process.env.PORT | 3000;
 
@@ -11,7 +13,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/api", require("./routes"));
 app.use(express.static("storage"));
 
 morganBody(app, {
@@ -22,6 +23,16 @@ morganBody(app, {
   },
   stream: loggerSlack,
 });
+
+/**
+ * API endpoint
+ */
+app.use("/api", require("./routes"));
+
+/**
+ * API documentation
+ */
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(PORT, () => {
   console.log(`Up and running on port ${PORT}`);
