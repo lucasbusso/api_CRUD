@@ -2,10 +2,10 @@
   "name": "api_spotify",
   "version": "1.0.0",
   "description": "",
-  "main": "./api/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./api/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon ./api/index.js"
+    "start": "cross-env NODE_ENV=production node ./app.js",
+    "dev": "cross-env NODE_ENV=development nodemon ./app.js"
   },
   "keywords": [],
   "author": "",
