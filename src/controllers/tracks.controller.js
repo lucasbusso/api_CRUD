@@ -6,7 +6,7 @@ const getItems = async (req, res) => {
   try {
     const data = await tracksModel.find({});
     const length = data.length;
-    res.send({ length, data });
+    res.status(200).send({ length, data });
   } catch (error) {
     handleHttpError(res, "ERROR_GET_ITEMS");
   }
@@ -16,16 +16,16 @@ const getItem = async (req, res) => {
     req = matchedData(req);
     const { id } = req;
     const data = await tracksModel.findById(id);
-    res.send({ data });
+    res.status(200).send({ data });
   } catch (error) {
-    handleHttpError(res, "ERROR_GET_ITEM");
+    handleHttpError(res, "ERROR_GET_ITEM", 404);
   }
 };
 const createItem = async (req, res) => {
   try {
     const body = matchedData(req);
     const data = await tracksModel.create(body);
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (error) {
     handleHttpError(res, "ERROR_CREATE_ITEM");
   }
@@ -34,7 +34,7 @@ const updateItem = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req);
     const data = await tracksModel.findOneAndUpdate({ id }, body);
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (error) {
     handleHttpError(res, "ERROR_UPDATE_ITEM");
   }
@@ -44,7 +44,7 @@ const deleteItem = async (req, res) => {
     req = matchedData(req);
     const { id } = req;
     const data = await tracksModel.delete({ _id: id });
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (error) {
     handleHttpError(res, "ERROR_DELETE_ITEM");
   }

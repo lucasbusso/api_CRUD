@@ -10,7 +10,7 @@ const getItems = async (req, res) => {
   try {
     const data = await storageModel.find({});
     const length = data.length;
-    res.send({ length, data });
+    res.status(200).send({ length, data });
   } catch (error) {
     handleHttpError(res, "ERROR_GET_ITEMS");
   }
@@ -20,7 +20,7 @@ const getItem = async (req, res) => {
   try {
     const { id } = matchedData(req);
     const data = await storageModel.findById(id);
-    res.send({ data });
+    res.status(200).send({ data });
   } catch (error) {
     handleHttpError(res, "ERROR_GET_ITEM");
   }
@@ -34,7 +34,7 @@ const createItem = async (req, res) => {
       filename: file.filename,
     };
     const response = await storageModel.create(body);
-    res.send({ response });
+    res.status(201).send({ response });
   } catch (e) {
     handleHttpError(res, "ERROR_UPLOAD_ITEM");
   }
@@ -54,7 +54,7 @@ const deleteItem = async (req, res) => {
       deleted: true,
     };
 
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (error) {
     handleHttpError(res, "ERROR_DELETE_ITEM");
   }
