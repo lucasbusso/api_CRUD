@@ -1,11 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const dbConnection = require("./config/mongo");
+const dbConnection = require("../config/mongo");
 const morganBody = require("morgan-body");
-const { loggerSlack } = require("./utils/handleLogger");
+const { loggerSlack } = require("../utils/handleLogger");
 const swaggerUi = require("swagger-ui-express");
-const openapiSpecification = require("./docs/swagger");
+const openapiSpecification = require("../docs/swagger");
 
 const PORT = process.env.PORT | 3000;
 
@@ -25,9 +25,9 @@ morganBody(app, {
 });
 
 /**
- * API endpoint
+ * API endpoints
  */
-app.use("/api", require("./routes"));
+app.use("/api", require("../routes"));
 
 /**
  * API documentation

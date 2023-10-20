@@ -4,7 +4,7 @@ const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
     title: "Rest API - Lucas Busso",
-    description: "Esta documentación de api se genera automaticamente",
+    description: "Te dejo el repo: https://github.com/lucasbusso/api_CRUD",
   },
   servers: [
     {
