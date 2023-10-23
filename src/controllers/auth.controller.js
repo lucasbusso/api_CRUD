@@ -1,7 +1,7 @@
 const { matchedData } = require("express-validator");
 const { tokenSign } = require("../utils/handleJWT");
 const handleHttpError = require("../utils/handleError");
-const authService = require("../services/user.service");
+const authService = require("../services/auth.service");
 
 const login = async (req, res) => {
   try {
