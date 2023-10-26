@@ -13,7 +13,7 @@ const router = express.Router();
  *      summary: "Register user"
  *      description: User registration.
  *      responses:
- *        '200':
+ *        '201':
  *          description: Returns the entity object and session token (Authorization header) in the body response.
  *        '403':
  *          description: Descriptive error response.

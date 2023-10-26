@@ -5,10 +5,10 @@ const validatorGetItem = require("../validators/storage");
 const authMiddleware = require("../middlewares/session");
 
 const {
-  createItem,
-  getItems,
-  getItem,
-  deleteItem,
+  createStorageRecord,
+  getStorageList,
+  getStorageDetail,
+  deleteStorageRecord,
 } = require("../controllers/storage.controller");
 
 /**
@@ -32,7 +32,7 @@ const {
  *        description: Returns length property and data array with objects stored in DB
  *
  */
-router.get("/", authMiddleware, getItems);
+router.get("/", authMiddleware, getStorageList);
 
 /**
  * Detalle track
@@ -58,7 +58,7 @@ router.get("/", authMiddleware, getItems);
  *           schema:
  *              type: string
  */
-router.get("/:id", authMiddleware, validatorGetItem, getItem);
+router.get("/:id", authMiddleware, validatorGetItem, getStorageDetail);
 
 /**
  * Upload file storage
@@ -84,7 +84,7 @@ router.get("/:id", authMiddleware, validatorGetItem, getItem);
  *           schema:
  *              $ref: "#/definitions/upload"
  */
-router.post("/", authMiddleware, upload.single("myfile"), createItem);
+router.post("/", authMiddleware, upload.single("myfile"), createStorageRecord);
 
 /**
  * Delete storage
@@ -111,6 +111,6 @@ router.post("/", authMiddleware, upload.single("myfile"), createItem);
  *              type: string
  *
  */
-router.delete("/:id", authMiddleware, validatorGetItem, deleteItem);
+router.delete("/:id", authMiddleware, validatorGetItem, deleteStorageRecord);
 
 module.exports = router;
