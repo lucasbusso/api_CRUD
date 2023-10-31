@@ -8,10 +8,11 @@ const validatorLogin = [
 ];
 
 const validatorRegister = [
-  check("name").notEmpty().exists().isLength({ min: 3, max: 50 }),
+  check("firstName").notEmpty().exists(),
+  check("lastName").notEmpty().exists(),
+  check("ownBusiness").notEmpty().exists(),
   check("email").notEmpty().exists().isEmail(),
   check("password").notEmpty().exists(),
-  check("age").notEmpty().exists().isNumeric(),
   (req, res, next) => validateResult(req, res, next),
 ];
 
