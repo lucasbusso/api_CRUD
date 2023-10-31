@@ -5,12 +5,17 @@ const mongooseDelete = require("mongoose-delete");
 
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
       trim: true,
     },
-    age: {
-      type: Number,
+    lastName: {
+      type: String,
+      trim: true,
+    },
+    ownBusiness: {
+      type: String,
+      trim: true,
     },
     email: {
       type: String,
@@ -24,7 +29,7 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: ["user", "admin"],
-      default: "user",
+      default: "admin",
     },
   },
   {

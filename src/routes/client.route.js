@@ -1,15 +1,15 @@
 const express = require("express");
 const {
-  getItems,
-  getItem,
-  createItem,
-  updateItem,
-  deleteItem,
-} = require("../controllers/tracks.controller");
+  getAllClients,
+  getClient,
+  createClient,
+  updateClient,
+  deleteClient,
+} = require("../controllers/client.controller");
 const {
   validatorCreateItem,
   validatorGetItem,
-} = require("../validators/track");
+} = require("../validators/client");
 const authMiddleware = require("../middlewares/session");
 const checkRole = require("../middlewares/userRole");
 
@@ -32,7 +32,7 @@ const router = express.Router();
  *        '402':
  *          description: Not allow because you need more permissions.
  */
-router.get("/", authMiddleware, getItems);
+router.get("/", authMiddleware, getAllClients);
 
 /**
  * Get track
@@ -58,7 +58,7 @@ router.get("/", authMiddleware, getItems);
  *           schema:
  *              type: string
  */
-router.get("/:id", authMiddleware, validatorGetItem, getItem);
+router.get("/:id", authMiddleware, validatorGetItem, getClient);
 
 /**
  * Post new track
@@ -89,7 +89,7 @@ router.post(
   authMiddleware,
   checkRole(["admin"]),
   validatorCreateItem,
-  createItem
+  createClient
 );
 
 /**
@@ -127,7 +127,7 @@ router.put(
   authMiddleware,
   validatorGetItem,
   validatorCreateItem,
-  updateItem
+  updateClient
 );
 
 /**
@@ -154,6 +154,6 @@ router.put(
  *           schema:
  *              type: string
  */
-router.delete("/:id", authMiddleware, validatorGetItem, deleteItem);
+router.delete("/:id", authMiddleware, validatorGetItem, deleteClient);
 
 module.exports = router;
