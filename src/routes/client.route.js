@@ -16,14 +16,14 @@ const checkRole = require("../middlewares/userRole");
 const router = express.Router();
 
 /**
- * Get all tracks
+ * Get all clients registered
  * @swagger
- * /tracks:
+ * /clients:
  *    get:
  *      tags:
- *        - tracks
- *      summary: "List all tracks"
- *      description: List all tracks with details
+ *        - clients
+ *      summary: "List all clients"
+ *      description: List all clients with details
  *      security:
  *        - bearerAuth: []
  *      responses:
@@ -35,17 +35,17 @@ const router = express.Router();
 router.get("/", authMiddleware, getAllClients);
 
 /**
- * Get track
+ * Get client
  * @swagger
- * /tracks/{id}:
+ * /clients/{id}:
  *    get:
  *      tags:
- *        - tracks
- *      summary: "Get track"
- *      description: Get track detail
+ *        - clients
+ *      summary: "Get client"
+ *      description: Get client detail
  *      responses:
  *        '200':
- *          description: Returns track model data stored.
+ *          description: Returns client object.
  *        '422':
  *          description: Descriptive error (could be due a validation or an invalid ID error).
  *      security:
@@ -53,7 +53,7 @@ router.get("/", authMiddleware, getAllClients);
  *      parameters:
  *        -  in: "path"
  *           name: "id"
- *           description: "ID track"
+ *           description: "client ID"
  *           required: true
  *           schema:
  *              type: string
@@ -61,17 +61,17 @@ router.get("/", authMiddleware, getAllClients);
 router.get("/:id", authMiddleware, validatorGetItem, getClient);
 
 /**
- * Post new track
+ * Create new client
  * @swagger
- * /tracks:
+ * /clients:
  *    post:
  *      tags:
- *        - tracks
- *      summary: "Add track"
- *      description: Add new track with detail
+ *        - clients
+ *      summary: "Create client"
+ *      description: Create new client with detail
  *      responses:
  *        '200':
- *          description: Returns track inserted in collection.
+ *          description: Returns client inserted in collection.
  *        '422':
  *          description: Descriptive error (could be due a validation or a body request error)
  *      security:
@@ -79,10 +79,10 @@ router.get("/:id", authMiddleware, validatorGetItem, getClient);
  *      parameters:
  *        -  in: "body"
  *           name: "body"
- *           description: "Schema collection defined to store a new track"
+ *           description: "Schema collection defined to store a new client"
  *           required: true
  *           schema:
- *              $ref: "#/definitions/track"
+ *              $ref: "#/definitions/client"
  */
 router.post(
   "/",
@@ -93,14 +93,14 @@ router.post(
 );
 
 /**
- * Upadte new track
+ * Update client
  * @swagger
- * /tracks/{id}:
+ * /clients/{id}:
  *    put:
  *      tags:
- *        - tracks
- *      summary: "Update track"
- *      description: Update track with detail
+ *        - clients
+ *      summary: "Update client"
+ *      description: Update client
  *      responses:
  *        '200':
  *          description: Returns updated register.
@@ -114,10 +114,10 @@ router.post(
  *           description: "Model description"
  *           required: true
  *           schema:
- *              $ref: "#/definitions/track"
+ *              $ref: "#/definitions/client"
  *        -  in: "path"
  *           name: "id"
- *           description: "ID track"
+ *           description: "client ID"
  *           required: true
  *           schema:
  *              type: string
@@ -131,17 +131,17 @@ router.put(
 );
 
 /**
- * Delete track
+ * Delete client
  * @swagger
- * /tracks/{id}:
+ * /clients/{id}:
  *    delete:
  *      tags:
- *        - tracks
- *      summary: "Delete track"
- *      description: Delete track detail
+ *        - clients
+ *      summary: "Delete client"
+ *      description: Delete client detail
  *      responses:
  *        '200':
- *          description: Returns findMedia file property and deleted boolean property.
+ *          description: Response deleted row.
  *        '422':
  *          description: Descriptive error (could be due a validation or a body request error).
  *      security:
@@ -149,7 +149,7 @@ router.put(
  *      parameters:
  *        -  in: "path"
  *           name: "id"
- *           description: "ID track"
+ *           description: "ID client"
  *           required: true
  *           schema:
  *              type: string

@@ -22,54 +22,63 @@ const swaggerDefinition = {
     },
   },
   definitions: {
-    track: {
+    client: {
       type: "object",
-      required: ["name", "album", "cover", "artist", "duration", "mediaId"],
+      required: [
+        "firstName",
+        "lastName",
+        "businessName",
+        "email",
+        "phone",
+        "antiquity",
+        "debt",
+        "userId",
+      ],
       properties: {
-        name: {
+        firstName: {
           type: "string",
         },
-        album: {
+        lastName: {
           type: "string",
         },
-        cover: {
+        businessName: {
           type: "string",
         },
-        mediaId: {
+        email: {
           type: "string",
         },
-        artist: {
-          type: "object",
-          properties: {
-            name: {
-              type: "string",
-            },
-            nickname: {
-              type: "string",
-            },
-            nationality: {
-              type: "string",
-            },
-          },
+        phone: {
+          type: "string",
         },
-        duration: {
-          type: "object",
-          properties: {
-            start: {
-              type: "integer",
-            },
-            end: {
-              type: "integer",
-            },
-          },
+        anquiquity: {
+          type: "string",
+        },
+        debt: {
+          type: "number",
+        },
+        userId: {
+          type: "string",
         },
       },
     },
     register: {
       type: "object",
-      required: ["name", "password", "email", "age"],
+      required: [
+        "firstName",
+        "lastName",
+        "ownBusiness",
+        "password",
+        "email",
+        "role",
+      ],
       properties: {
-        name: {
+        firstName: {
+          type: "string",
+        },
+        lastName: {
+          type: "string",
+        },
+        ownBusiness: {
           type: "string",
         },
         password: {
@@ -78,8 +87,8 @@ const swaggerDefinition = {
         email: {
           type: "string",
         },
-        age: {
-          type: "number",
+        role: {
+          type: "string",
         },
       },
     },
