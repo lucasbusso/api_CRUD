@@ -13,7 +13,7 @@ const dbConnect = () => {
       if (!err) {
         console.log("*****mongoose DB Connection successful****");
       } else {
-        console.log("*****Connection error ****");
+        console.log("*****Connection error ****", { err });
       }
     }
   );
