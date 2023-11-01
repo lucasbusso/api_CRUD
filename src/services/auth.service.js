@@ -14,7 +14,7 @@ const create = async (userData) => {
 const login = async (email, password) => {
   const user = await userModel
     .findOne({ email })
-    .select("password name role email");
+    .select("password firstName role email");
   if (!user) {
     throw new Error("USER_NOT_REGISTERED");
   }
