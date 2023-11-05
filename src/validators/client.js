@@ -8,6 +8,7 @@ const validatorCreateItem = [
   check("email").notEmpty().exists(),
   check("phone").notEmpty().exists(),
   check("debt").notEmpty().exists(),
+  check("role").notEmpty().exists(),
   (req, res, next) => validateResult(req, res, next),
 ];
 
