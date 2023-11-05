@@ -8,7 +8,13 @@ const getClientsService = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ").pop();
     const { _id } = await verifyToken(token);
-    const data = await clientModel.find({ userId: _id });
+    const { filter } = req.query;
+
+    let query = { userId: _id };
+    if (filter) {
+      query.role = filter;
+    }
+    const data = await clientModel.find(query);
     const length = data.length;
     return { data, length };
   } catch (error) {
