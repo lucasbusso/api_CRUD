@@ -50,6 +50,11 @@ const ClientSchema = new mongoose.Schema(
       type: ["proveedor", "cliente"],
       default: "cliente",
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+      required: true,
+    },
   },
   {
     timestamps: true,
