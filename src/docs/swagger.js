@@ -1,128 +1,128 @@
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJsdoc = require('swagger-jsdoc')
 
 const swaggerDefinition = {
-  openapi: "3.0.0",
+  openapi: '3.0.0',
   info: {
-    title: "Rest API - Lucas Busso",
-    description: "Te dejo el repo: https://github.com/lucasbusso/api_CRUD",
+    title: 'Rest API - Lucas Busso',
+    description: 'Te dejo el repo: https://github.com/lucasbusso/api_CRUD',
   },
   servers: [
     {
-      url: "http://localhost:3001/api",
-      description: "Development server",
+      url: 'http://localhost:3001/api',
+      description: 'Development server',
     },
   ],
-  schemes: ["http"],
+  schemes: ['http'],
   components: {
     securitySchemes: {
       bearerAuth: {
-        type: "http",
-        scheme: "bearer",
+        type: 'http',
+        scheme: 'bearer',
       },
     },
   },
   definitions: {
     client: {
-      type: "object",
+      type: 'object',
       required: [
-        "firstName",
-        "lastName",
-        "businessName",
-        "email",
-        "phone",
-        "antiquity",
-        "debt",
-        "userId",
+        'firstName',
+        'lastName',
+        'businessName',
+        'email',
+        'phone',
+        'antiquity',
+        'debt',
+        'userId',
       ],
       properties: {
         firstName: {
-          type: "string",
+          type: 'string',
         },
         lastName: {
-          type: "string",
+          type: 'string',
         },
         businessName: {
-          type: "string",
+          type: 'string',
         },
         email: {
-          type: "string",
+          type: 'string',
         },
         phone: {
-          type: "string",
+          type: 'string',
         },
         anquiquity: {
-          type: "string",
+          type: 'string',
         },
         debt: {
-          type: "number",
+          type: 'number',
         },
         userId: {
-          type: "string",
+          type: 'string',
         },
       },
     },
     register: {
-      type: "object",
+      type: 'object',
       required: [
-        "firstName",
-        "lastName",
-        "ownBusiness",
-        "password",
-        "email",
-        "role",
+        'firstName',
+        'lastName',
+        'ownBusiness',
+        'password',
+        'email',
+        'role',
       ],
       properties: {
         firstName: {
-          type: "string",
+          type: 'string',
         },
         lastName: {
-          type: "string",
+          type: 'string',
         },
         ownBusiness: {
-          type: "string",
+          type: 'string',
         },
         password: {
-          type: "string",
+          type: 'string',
         },
         email: {
-          type: "string",
+          type: 'string',
         },
         role: {
-          type: "string",
+          type: 'string',
         },
       },
     },
     login: {
-      type: "object",
-      required: ["email", "password"],
+      type: 'object',
+      required: ['email', 'password'],
       properties: {
         email: {
-          type: "string",
+          type: 'string',
         },
         password: {
-          type: "string",
+          type: 'string',
         },
       },
     },
     upload: {
-      type: "object",
-      required: ["key", "value"],
+      type: 'object',
+      required: ['key', 'value'],
       properties: {
         key: {
-          type: "string",
+          type: 'string',
         },
         value: {
-          type: "file",
+          type: 'file',
         },
       },
     },
   },
-};
+}
 
 const options = {
   swaggerDefinition,
-  apis: ["src/routes/*.js"],
-};
+  apis: ['src/routes/*.js'],
+}
 
-const openapiSpecification = swaggerJsdoc(options);
-module.exports = openapiSpecification;
+const openApiSpecification = swaggerJsdoc(options)
+module.exports = openApiSpecification
