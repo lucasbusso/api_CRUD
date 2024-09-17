@@ -1,17 +1,7 @@
-const { encrypt, compare } = require("../utils/handlePassword");
-const { userModel } = require("../models");
+const { compare } = require("../../utils/handlePassword");
+const { userModel } = require("../../models");
 
-const create = async (userData) => {
-  const hashedPassword = await encrypt(userData.password);
-  const user = await userModel.create({
-    ...userData,
-    password: hashedPassword,
-  });
-  user.set("password", undefined, { strict: false });
-  return user;
-};
-
-const login = async (email, password) => {
+const loginService = async (email, password) => {
   let user;
 
   if (process.env.DB_ENGINE === "nosql") {
@@ -35,7 +25,4 @@ const login = async (email, password) => {
   return user;
 };
 
-module.exports = {
-  create,
-  login,
-};
+module.exports = loginService;

@@ -1,11 +1,11 @@
 const express = require("express");
 const {
-  getAllClients,
-  getClient,
-  createClient,
-  updateClient,
-  deleteClient,
-} = require("../controllers/client.controller");
+  createClientController,
+  deleteClientController,
+  getAllClientsController,
+  getClientController,
+  updateClientController,
+} = require("../controllers/clients");
 const {
   validatorCreateItem,
   validatorGetItem,
@@ -32,7 +32,7 @@ const router = express.Router();
  *        '402':
  *          description: Not allow because you need more permissions.
  */
-router.get("/", authMiddleware, getAllClients);
+router.get("/", authMiddleware, getAllClientsController);
 
 /**
  * Get client
@@ -58,7 +58,7 @@ router.get("/", authMiddleware, getAllClients);
  *           schema:
  *              type: string
  */
-router.get("/:id", authMiddleware, validatorGetItem, getClient);
+router.get("/:id", authMiddleware, validatorGetItem, getClientController);
 
 /**
  * Create new client
@@ -89,7 +89,7 @@ router.post(
   authMiddleware,
   checkRole(["admin"]),
   validatorCreateItem,
-  createClient
+  createClientController
 );
 
 /**
@@ -127,7 +127,7 @@ router.put(
   authMiddleware,
   validatorGetItem,
   validatorCreateItem,
-  updateClient
+  updateClientController
 );
 
 /**
@@ -154,6 +154,6 @@ router.put(
  *           schema:
  *              type: string
  */
-router.delete("/:id", authMiddleware, validatorGetItem, deleteClient);
+router.delete("/:id", authMiddleware, validatorGetItem, deleteClientController);
 
 module.exports = router;
