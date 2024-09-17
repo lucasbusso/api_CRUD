@@ -1,7 +1,9 @@
+const DB_ENGINE = process.env.DB_ENGINE;
+const dynamicPath = DB_ENGINE === "nosql" ? "./noSQL" : "./SQL";
+
 const models = {
-  userModel: require("./noSQL/user.model"),
-  clientModel: require("./noSQL/client.model"),
-  storageModel: require("./noSQL/storage.model"),
+  userModel: require(`${dynamicPath}/user.model`),
+  clientModel: require(`${dynamicPath}/client.model`),
 };
 
 module.exports = models;

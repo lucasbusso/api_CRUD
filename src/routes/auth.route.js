@@ -1,6 +1,6 @@
 const express = require("express");
 const { validatorLogin, validatorRegister } = require("../validators/auth");
-const { login, register } = require("../controllers/auth.controller");
+const { loginController, registerController } = require("../controllers/users");
 const router = express.Router();
 
 /**
@@ -26,7 +26,7 @@ const router = express.Router();
  *              $ref: "#/definitions/register"
  *
  */
-router.post("/register", validatorRegister, register);
+router.post("/register", validatorRegister, registerController);
 
 /**
  * Register new user
@@ -51,6 +51,6 @@ router.post("/register", validatorRegister, register);
  *              $ref: "#/definitions/login"
  *
  */
-router.post("/login", validatorLogin, login);
+router.post("/login", validatorLogin, loginController);
 
 module.exports = router;
