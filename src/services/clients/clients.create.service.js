@@ -41,4 +41,4 @@ const createClientService = async (req, res) => {
   }
 };
 
-module.exports = { createClientService };
+module.exports = createClientService;

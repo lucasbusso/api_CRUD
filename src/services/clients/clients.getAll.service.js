@@ -45,4 +45,4 @@ const getClientsService = async (req, res) => {
   }
 };
 
-module.exports = { getClientsService };
+module.exports = getClientsService;

@@ -11,4 +11,4 @@ const registerService = async (userData) => {
   return user;
 };
 
-module.exports = { registerService };
+module.exports = registerService;

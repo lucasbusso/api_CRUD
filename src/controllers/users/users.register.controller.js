@@ -10,7 +10,7 @@ const registerController = async (req, res) => {
     const token = await tokenSign(user);
     res.status(201).send({ token, user });
   } catch (error) {
-    handleHttpError(res, "ERROR_REGISTER_USER");
+    handleHttpError(res, `ERROR_REGISTER_USER: ${error}`);
   }
 };
 

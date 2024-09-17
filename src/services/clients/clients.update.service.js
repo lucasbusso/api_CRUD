@@ -57,7 +57,7 @@ const updateClientService = async (req, res) => {
         }
       }
 
-      return res.send({ data: { message: "Rows updated successfully" } });
+      return { data: { message: "Rows updated successfully" } };
     } else {
       handleHttpError(res, "UNAUTHORIZED", 403);
     }
@@ -66,4 +66,4 @@ const updateClientService = async (req, res) => {
   }
 };
 
-module.exports = { updateClientService };
+module.exports = updateClientService;

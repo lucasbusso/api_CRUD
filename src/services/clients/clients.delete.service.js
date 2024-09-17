@@ -32,9 +32,7 @@ const deleteClientService = async (req, res) => {
       if (existingClient) {
         const result = await clientModel.deleteOne({ _id: id });
         if (result.deletedCount > 0) {
-          return res
-            .status(200)
-            .send({ message: "Client deleted successfully" });
+          return { message: "Client deleted successfully" };
         } else {
           throw new Error("Client not found or not deleted");
         }
@@ -55,9 +53,7 @@ const deleteClientService = async (req, res) => {
         });
 
         if (result > 0) {
-          return res
-            .status(200)
-            .send({ message: "Client deleted successfully" });
+          return { message: "Client deleted successfully" };
         } else {
           throw new Error("Client not found or not deleted");
         }
@@ -70,4 +66,4 @@ const deleteClientService = async (req, res) => {
   }
 };
 
-module.exports = { deleteClientService };
+module.exports = deleteClientService;
