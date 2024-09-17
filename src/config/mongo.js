@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const dbConnect = () => {
+const dbConnectNoSql = () => {
   const DB_URI = process.env.DB_URI;
   mongoose.set("strictQuery", true);
   mongoose.connect(
@@ -11,7 +11,7 @@ const dbConnect = () => {
     },
     (err, response) => {
       if (!err) {
-        console.log("*****mongoose DB Connection successful****");
+        console.log("*****MongoDB connection successful****");
       } else {
         console.log("*****Connection error ****", { err });
       }
@@ -19,4 +19,4 @@ const dbConnect = () => {
   );
 };
 
-module.exports = dbConnect;
+module.exports = { dbConnectNoSql };

@@ -14,7 +14,7 @@ const validatorCreateItem = [
 ];
 
 const validatorGetItem = [
-  check("id").notEmpty().exists().isMongoId(),
+  check("id").notEmpty().exists(),
   (req, res, next) => validateResult(req, res, next),
 ];
 
