@@ -47,12 +47,4 @@ const Client = sequelize.define(
   }
 );
 
-Client.belongsTo(User, {
-  foreignKey: {
-    name: "userId", // Nombre de la clave foránea en la tabla `clients`
-    allowNull: false, // Asegurar que la clave foránea no sea nula
-  },
-  onDelete: "CASCADE", // Opcional: Eliminar un cliente si se elimina el usuario
-});
-
 module.exports = Client;

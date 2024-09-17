@@ -10,7 +10,7 @@ const login = async (req, res) => {
     const token = await tokenSign(user);
     res.status(200).send({ token, user });
   } catch (error) {
-    handleHttpError(res, "ERROR_LOGIN_USER");
+    handleHttpError(res, `ERROR_LOGIN_USER: ${error}`);
   }
 };
 
