@@ -14,7 +14,7 @@ const Client = sequelize.define(
       allowNull: false,
     },
     businessName: {
-      type: String,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
@@ -40,6 +40,13 @@ const Client = sequelize.define(
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: "id",
+      },
     },
   },
   {
